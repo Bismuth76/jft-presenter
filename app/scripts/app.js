@@ -15,6 +15,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
 
+  app.name = "Presentation name";
+
+  app.slidesNumber = 0;
+
   app.displayInstalledToast = function() {
     document.querySelector('#caching-complete').show();
   };
@@ -28,14 +32,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // See https://github.com/Polymer/polymer/issues/1381
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
+
   });
 
   // Close drawer after menu item is selected if drawerPanel is narrow
   app.onMenuSelect = function() {
     var drawerPanel = document.querySelector('#paperDrawerPanel');
-    if (drawerPanel.narrow) {
+    /*if (drawerPanel.narrow) {
       drawerPanel.closeDrawer();
-    }
+    }*/
   };
+
+  app.pleaseOpenDrawer = function() {
+    var drawerPanel = document.querySelector('#paperDrawerPanel');
+    drawerPanel.openDrawer();
+  }
+
+  app.previousSlide = function() {
+    console.log('Previous old=',app.route);
+    if(app.route > 0) {
+      app.route--;
+      window.location.href = "#!/" + app.route;
+    }
+    console.log('Previous new=',app.route);
+  }
+
+  app.nextSlide = function() {
+    console.log('Next old=', app.route);
+    if(app.route < app.slidesNumber -1) {
+      app.route++;
+      window.location.href = "#!/" + app.route;
+    }
+    console.log('Next new=', app.route);
+  }
 
 })(document);

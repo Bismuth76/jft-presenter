@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-    <paper-drawer-panel id="paperDrawerPanel">
+    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
       <div drawer>
 
         <!-- Drawer Toolbar -->
@@ -69,46 +69,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
           <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-              <a data-route="home" href="/">
+              <a data-route="0" href="#!/0">
                 <iron-icon icon="home"></iron-icon>
-                <span>Home</span>
+                <span>0</span>
               </a>
 
-              <a data-route="users" href="/users">
+              <a data-route="1" href="#!/1">
                 <iron-icon icon="info"></iron-icon>
-                <span>Users</span>
+                <span>1</span>
               </a>
 
-              <a data-route="contact" href="/contact">
+              <a data-route="2" href="#!/2">
                 <iron-icon icon="mail"></iron-icon>
-                <span>Contact</span>
+                <span>2</span>
               </a>
           </paper-menu>
       </div>
       <paper-header-panel main mode="waterfall-tall">
-
-        <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar">
-          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-          <span class="flex"></span>
-
-          <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
-
-          <!-- Application name -->
-          <div class="middle paper-font-display2 app-name">Polymer Starter Kit</div>
-
-          <!-- Application sub title -->
-          <div class="bottom title"></div>
-
-        </paper-toolbar>
-
         <!-- Main Content -->
         <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+          <iron-pages selected="{{route}}" id="slide-container">
 
-            <section data-route="home">
+            <section>
               <paper-material elevation="1">
                 <my-greeting></my-greeting>
 
@@ -142,7 +124,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             </section>
 
-            <section data-route="users">
+            <section>
               <paper-material elevation="1">
                 <h2 class="paper-font-display2">Users</h2>
                 <p>This is the users section</p>
@@ -150,7 +132,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section data-route="user-info">
+            <section>
               <paper-material elevation="1">
                 <h2 class="paper-font-display2">
                 User:<span>{{params.name}}</span>
@@ -159,7 +141,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section data-route="contact">
+            <section>
               <paper-material elevation="1">
                 <h2 class="paper-font-display2">Contact</h2>
                 <p>This is the contact section</p>
@@ -170,21 +152,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </paper-header-panel>
     </paper-drawer-panel>
-
-    <paper-toast id="caching-complete"
-                 duration="6000"
-                 text="Caching complete! This app will work offline.">
-    </paper-toast>
-
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="networkFirst"
-                         precache-file="precache.json">
-      </platinum-sw-cache>
-    </platinum-sw-register>
-
+    <nav class="navigation-buttons">
+      <paper-fab icon="arrow-back" on-click="previousSlide" id="previous-button"></paper-fab>
+      <paper-fab icon="menu" on-click="pleaseOpenDrawer" id="menu-button"></paper-fab>
+      <paper-fab icon="arrow-forward" on-click="nextSlide" id="next-button"></paper-fab>
+    </nav>
   </template>
 
   <!-- build:js scripts/app.js -->

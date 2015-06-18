@@ -12,24 +12,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
   window.addEventListener('WebComponentsReady', function() {
 
+    app.slidesNumber = document.querySelectorAll('#slide-container > *').length;
+    console.log('Nombre de slides', app.slidesNumber);
+
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
-      app.route = 'home';
+      app.route = 0;
     });
 
-    page('/users', function () {
-      app.route = 'users';
-    });
+    page('/:slide', function (ctx) {
+      ctx.params.slide = Math.round(Number(ctx.params.slide));
 
-    page('/users/:name', function (data) {
-      app.route = 'user-info';
-      app.params = data.params;
-    });
+      if(isNaN(ctx.params.slide) || ctx.params.slide < 0) {
+        ctx.params.slide = 0;
+        window.location.href = "#!/" + ctx.params.slide;
+      }
+      else if(ctx.params.slide > app.slidesNumber - 1) {
+        ctx.params.slide = app.slidesNumber - 1;
+        window.location.href = "#!/" + ctx.params.slide;
+      }
 
-    page('/contact', function () {
-      app.route = 'contact';
+      if(!app.route) {
+        app.route = ctx.params.slide | 0;
+        window.location.href = "#!/" + ctx.params.slide;
+      }
     });
 
     // add #! before urls

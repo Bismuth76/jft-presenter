@@ -23,25 +23,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   :root {
     --dark-primary-color: #303F9F;
-    --default-primary-color: #3F51B5;
+    --default-primary-color: #3a99d7;
     --light-primary-color: #C5CAE9;
     --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: #FF4081;
-    --primary-background-color: #c5cae9;
-    --primary-text-color: #212121;
-    --secondary-text-color: #727272;
+    --accent-color: #f16529;
+    --primary-background-color: #3a99d7;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #f3f3f3;
     --disabled-text-color: #bdbdbd;
-    --divider-color: #B6B6B6;
+    --divider-color: #f16529; /*#B6B6B6;*/
 
     /* Components */
 
     /* paper-drawer-panel */
-    --drawer-menu-color: #ffffff;
+    --drawer-menu-color: transparent;
     --drawer-border-color: 1px solid #ccc;
     --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
 
     /* paper-menu */
-    --paper-menu-background-color: #fff;
+    --paper-menu-background-color: transparent;
     --menu-link-color: #111111;
   }
 
@@ -107,6 +107,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   /* Height of the scroll area */
   .content {
     height: 900px;
+  }
+
+  paper-drawer-panel {
+    background: radial-gradient(#afc9da, var(--primary-background-color));
+  }
+
+  .navigation-buttons {
+
+  }
+  .navigation-buttons {
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    margin: 20px;
+    opacity: 0;
+    transition: all 1s ease-out;
+  }
+
+  .navigation-buttons:active,
+  .navigation-buttons:hover {
+    transition: all 0.2s ease-in;
+    opacity: 1;
   }
 
   /* Breakpoints */
