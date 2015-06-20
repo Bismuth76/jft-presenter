@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     console.log('Previous old=',app.route);
     if(app.route > 0) {
       app.route--;
-      window.location.href = "#!/" + app.route;
+      window.location.href = "#!/" + app.mode + '/' + app.route;
     }
     console.log('Previous new=',app.route);
   }
@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     console.log('Next old=', app.route);
     if(app.route < app.slidesNumber -1) {
       app.route++;
-      window.location.href = "#!/" + app.route;
+      window.location.href = "#!/" + app.mode + '/' + app.route;
     }
     console.log('Next new=', app.route);
   }

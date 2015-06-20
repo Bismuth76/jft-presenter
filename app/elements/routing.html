@@ -13,37 +13,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   window.addEventListener('WebComponentsReady', function() {
 
     app.slidesNumber = document.querySelectorAll('#slide-container > *').length;
-    console.log('Nombre de slides', app.slidesNumber);
+
+    const PRESENTATION_MODE = 'presentation';
+    const CONSOLE_MODE = 'console';
+    var defaultSlide = 0;
+    var defaultMode = PRESENTATION_MODE;
 
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
-      app.route = 0;
+      app.route = defaultSlide;
+      app.mode = processMode(app.mode);
+      redirectFromAppState();
     });
 
     page('/:slide', function (ctx) {
-      ctx.params.slide = Math.round(Number(ctx.params.slide));
+      app.route = processSlide(ctx.params.slide);
+      app.mode = processMode(app.mode);
+      redirectFromAppState();
+    });
 
-      if(isNaN(ctx.params.slide) || ctx.params.slide < 0) {
-        ctx.params.slide = 0;
-        window.location.href = "#!/" + ctx.params.slide;
-      }
-      else if(ctx.params.slide > app.slidesNumber - 1) {
-        ctx.params.slide = app.slidesNumber - 1;
-        window.location.href = "#!/" + ctx.params.slide;
-      }
-
-      if(!app.route) {
-        app.route = ctx.params.slide | 0;
-        window.location.href = "#!/" + ctx.params.slide;
-      }
+    page('/:mode/:slide', function (ctx) {
+      app.mode = processMode(ctx.params.mode);
+      app.route = processSlide(ctx.params.slide);
+      redirectFromAppState();
     });
 
     // add #! before urls
     page({
       hashbang: true
     });
+
+    function processSlide(slide) {
+      slide = Math.round(Number(slide));
+
+      if(isNaN(slide) || slide < 0) {
+        slide = 0;
+      }
+      else if(slide > app.slidesNumber - 1) {
+        slide = app.slidesNumber - 1;
+      }
+      else {
+        slide = 0;
+      }
+      return slide;
+    }
+
+    function processMode(mode) {
+      if(!mode || (mode !== PRESENTATION_MODE && mode !== CONSOLE_MODE)) {
+        mode = defaultMode;
+      }
+      return mode;
+    }
+
+    function redirectFromAppState() {
+      window.location.href = "#!/"+app.mode+"/"+app.route;
+    }
 
   });
 </script>
