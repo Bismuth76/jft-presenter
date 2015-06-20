@@ -154,9 +154,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </paper-drawer-panel>
     <nav class="navigation-buttons">
       <paper-fab icon="arrow-back" on-click="previousSlide" id="previous-button"></paper-fab>
-      <paper-fab icon="menu" on-click="pleaseOpenDrawer" id="menu-button"></paper-fab>
+      <paper-fab icon="menu" on-click="toggleDrawer" id="menu-button"></paper-fab>
       <paper-fab icon="arrow-forward" on-click="nextSlide" id="next-button"></paper-fab>
     </nav>
+
+    <iron-a11y-keys target="{{}}" keys="right space" on-keys-pressed="nextSlide"></iron-a11y-keys>
+    <iron-a11y-keys target="{{}}" keys="left" on-keys-pressed="previousSlide"></iron-a11y-keys>
   </template>
 
   <!-- build:js scripts/app.js -->

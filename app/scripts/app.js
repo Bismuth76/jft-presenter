@@ -43,9 +43,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }*/
   };
 
-  app.pleaseOpenDrawer = function() {
+  app.toggleDrawer = function() {
     var drawerPanel = document.querySelector('#paperDrawerPanel');
-    drawerPanel.openDrawer();
+    drawerPanel.togglePanel();
   }
 
   app.previousSlide = function() {
