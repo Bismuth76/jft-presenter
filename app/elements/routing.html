@@ -64,6 +64,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if(!mode || (mode !== PRESENTATION_MODE && mode !== CONSOLE_MODE)) {
         mode = defaultMode;
       }
+      app.isPresentationMode = (mode === PRESENTATION_MODE);
+      console.log('Presentatioàn ?', app.isPresentationMode, mode);
       return mode;
     }
 

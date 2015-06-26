@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
+    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" hidden$="{{!isPresentationMode}}">
       <div drawer>
 
         <!-- Drawer Toolbar -->
@@ -152,6 +152,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </paper-header-panel>
     </paper-drawer-panel>
+
+    <div $hidden="{{isPresentationMode}}">CONSOLE</div>
+
     <nav class="navigation-buttons">
       <paper-fab icon="arrow-back" on-click="previousSlide" id="previous-button"></paper-fab>
       <paper-fab icon="menu" on-click="toggleDrawer" id="menu-button"></paper-fab>
