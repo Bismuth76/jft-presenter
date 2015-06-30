@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="tan-arrets-service">
   <style>
     :host {
-      display: block;
+      display: none;
     }
   </style>
   <template>
@@ -98,9 +98,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     stopsResponse: function() {
       this.references = this.$.stopsrequest.lastResponse;
       console.log(this.references);
-    },
-    populateWithGeoInfos: function(arret) {
-
     }
   });
 })();

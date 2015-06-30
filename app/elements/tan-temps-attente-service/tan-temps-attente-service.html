@@ -13,25 +13,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="tan-temps-attente-service">
   <style>
     :host {
-      display: block;
+      display: none;
     }
   </style>
   <template>
-    <div>Hello from <span>{{foo}}</span></div>
+    <h1>Tan attente implementation</h1>
+    <dt>
+    <dl>Latitude</dl>
+    <dd>{{latitude}}</dd>
+    </dt>
+    <dt>
+    <dl>Longitude</dl>
+    <dd>{{longitude}}</dd>
+    </dt>
+
+    <iron-ajax
+      auto
+      id="tanrequest"
+      handle-as="json"
+      on-response="handleResponse"
+      debounce-duration="300">
+    </iron-ajax>
+
   </template>
 </dom-module>
 <script>
-(function() {
-  Polymer({
-    is: 'tan-temps-attente-service',
+  (function() {
+    Polymer({
+      is: 'tan-temps-attente-service',
 
-    properties: {
-      foo: {
-        type: String,
-        value: 'bar',
-        notify: true
+      properties: {
+        codeLieu: {
+          type: String,
+          value: null,
+          reflectToAttribute: true,
+          notify: true,
+          observer: 'codeLieuChanged'
+        },
+        prochains: {
+          type: Array,
+          value: [],
+          notify: true
+        },
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+      },
+
+      ready: function() {
+
+      },
+      codeLieuChanged: function() {
+        if(!this.baseUrl) {
+          this.baseUrl = 'https://open.tan.fr/ewp/tempsattente.json/';
+        }
+        if(this.codeLieu) {
+          this.loading = true;
+          this.$.tanrequest.url = this.baseUrl + this.codeLieu;
+        }
+      },
+      handleResponse: function() {
+        this.prochains = this.$.tanrequest.lastResponse;
+        this.loading = false;
       }
-    }
-  });
-})();
+    });
+  })();
 </script>
