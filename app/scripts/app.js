@@ -19,6 +19,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.slidesNumber = 0;
 
+  app.latitude = 47.2172522;
+  app.longitude = -1.5533600;
+
+  app.markerLatitude = 47.2172522;
+  app.markerLongitude = -1.5533600;
+
   app.displayInstalledToast = function() {
     document.querySelector('#caching-complete').show();
   };
@@ -32,6 +38,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // See https://github.com/Polymer/polymer/issues/1381
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
+
+    var map = document.querySelector('#map');
+
+    map.resize();
 
   });
 
@@ -49,21 +59,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   app.previousSlide = function() {
-    console.log('Previous old=',app.route);
     if(app.route > 0) {
       app.route--;
       window.location.href = "#!/" + app.mode + '/' + app.route;
     }
-    console.log('Previous new=',app.route);
   }
 
   app.nextSlide = function() {
-    console.log('Next old=', app.route);
     if(app.route < app.slidesNumber -1) {
       app.route++;
       window.location.href = "#!/" + app.mode + '/' + app.route;
     }
-    console.log('Next new=', app.route);
   }
 
 })(document);

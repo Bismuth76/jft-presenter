@@ -1,0 +1,112 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="tan-app">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <google-map id="map" latitude="{{latitude}}" longitude="{{longitude}}" style="height: 300px;">
+      <google-map-marker id="marker" latitude="{{markerLatitude}}" longitude="{{markerLongitude}}" draggable="true" title="Go Giants!" mouse-events="true"></google-map-marker>
+
+      <template id="arretsmarkers" is="dom-repeat" items="{{arrets}}">
+        <google-map-marker latitude="{{item.latitude}}" longitude="{{item.longitude}}" title="{{item.libelle}}"></google-map-marker>
+      </template>
+    </google-map>
+
+
+    <tan-arrets-service latitude="{{markerLatitude}}" longitude="{{markerLongitude}}" arrets="{{arrets}}"></tan-arrets-service>
+    <paper-fab icon="refresh" on-click="refreshMarkers"></paper-fab>
+
+  </template>
+</dom-module>
+<script>
+(function() {
+  Polymer({
+    is: 'tan-app',
+
+    properties: {
+      marker: {
+        type: Object,
+        value: {
+          latitude: 47.2172522,
+          longitude: -1.5533600
+        }
+      },
+      markerLatitude: {
+        type: Number,
+        value: 47.2172522,
+        notify: true
+      },
+      markerLongitude: {
+        type: Number,
+        value: -1.5533600,
+        notify: true
+      },
+      arrets: {
+        type: Array,
+        observer: '_arretsChanged'
+      }
+    },
+    ready: function() {
+      var self = this;
+      this.latitude = 47.2172522;
+      this.longitude = -1.5533600;
+
+      this.$.marker.addEventListener('google-map-marker-mouseup', function() {
+        console.log('Click sur le marker', self.$.map.markers);
+        self.$.map.markers.forEach(function(marker, index) {
+          console.log("Process marker ", marker);
+          if(marker.id !== 'marker') {
+            console.log('Pas le marker');
+            marker.map = null;
+            marker._mapReady();
+
+            self.$.map.markers[index] = null;
+          }
+          else {
+            console.log('Cest le marker');
+          }
+        });
+
+        //self.$.map.markers.splice(1, self.$.map.markers.length-1);
+        self.$.map.clear();
+        self.$.map._updateMarkers();
+        console.log('After update', self.$.map.markers);
+        self.refreshMarkers();
+      });
+
+    },
+    addArretsMarkers: function() {
+
+    },
+    refreshMarkers: function() {
+      console.log('Refresh location');
+      this.markerLatitude = this.$.marker.latitude;
+      this.markerLongitude = this.$.marker.longitude;
+    },
+    _arretsChanged: function() {
+      var self = this;
+      this.async(function() {
+        self.$.map._updateMarkers();
+        self.$.map.markers.forEach(function(marker) {
+          console.log("Process marker ", marker);
+          marker._mapReady();
+        });
+      }, 200);
+
+    }
+  });
+})();
+</script>

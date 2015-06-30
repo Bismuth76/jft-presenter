@@ -1,0 +1,107 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="tan-arrets-service">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <h1>Tan arrêts implementation</h1>
+    <dt>
+      <dl>Latitude</dl>
+      <dd>{{latitude}}</dd>
+    </dt>
+    <dt>
+    <dl>Longitude</dl>
+    <dd>{{longitude}}</dd>
+    </dt>
+
+    <iron-ajax
+      auto
+      id="tanrequest"
+      handle-as="json"
+      on-response="handleResponse"
+      debounce-duration="300">
+    </iron-ajax>
+
+    <iron-ajax
+      auto
+      id="stopsrequest"
+      handle-as="json"
+      on-response="stopsResponse"
+      debounce-duration="300"
+      url="./stops.json">
+    </iron-ajax>
+
+  </template>
+</dom-module>
+<script>
+(function() {
+  Polymer({
+    is: 'tan-arrets-service',
+
+    properties: {
+      latitude: {
+        type: Number,
+        value: 47.2172500,
+        reflectToAttribute: true,
+        notify: true,
+        observer: 'latLongChangeg'
+      },
+      longitude: {
+        type: Number,
+        value: -1.5533600,
+        reflectToAttribute: true,
+        notify: true,
+        observer: 'latLongChangeg'
+      },
+      arrets: {
+        type: Array,
+        value: [],
+        notify: true
+      }
+    },
+
+    ready: function() {
+
+    },
+    latLongChangeg: function() {
+      if(!this.baseUrl) {
+        this.baseUrl = 'https://open.tan.fr/ewp/arrets.json/';
+      }
+      var latitude = ('' + this.latitude).replace(/\./g,',');
+      var longitude = ('' + this.longitude).replace(/\./g,',');
+      this.$.tanrequest.url = this.baseUrl + latitude + '/' + longitude;
+    },
+    handleResponse: function() {
+      var arrets = this.$.tanrequest.lastResponse;
+      if(arrets) {
+        arrets.forEach(function(arret) {
+          arret.latitude = this.references[arret.codeLieu]['stop_lat'];
+          arret.longitude = this.references[arret.codeLieu]['stop_lon'];
+        }, this);
+        console.log('Response from TAN', arrets);
+      }
+      this.arrets = arrets;
+    },
+    stopsResponse: function() {
+      this.references = this.$.stopsrequest.lastResponse;
+      console.log(this.references);
+    },
+    populateWithGeoInfos: function(arret) {
+
+    }
+  });
+})();
+</script>
