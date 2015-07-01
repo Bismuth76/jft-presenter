@@ -16,39 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
       position: relative;
     }
-    #result, #loading {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      background: none;
-      width: 40%;
-      max-height: 80%;
-      min-height: 50px;
-      overflow: auto;
-      margin: 0;
-      opacity: 0.9;
-    }
-    #loading {
-      background: white;
-    }
-    #result {
-      list-style: none;
-    }
-    #result > li {
-      background: white;
-      margin: 15px 0;
-      display: flex;
-      align-items: center;
-    }
-    #result > li .temps {
-      font-weight: bold;
-      padding-right: 30px;
-    }
-    #result > li .terminus {
-      padding-left: 20px;
-      flex: 1;
-    }
   </style>
   <template>
     <google-map id="map" latitude="{{latitude}}" longitude="{{longitude}}" style="height: 500px;" mouse-events="true" click-events="true" drag-events="true" zoom="15">
@@ -60,17 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </google-map>
     <google-map-marker id="marker" latitude="{{markerLatitude}}" longitude="{{markerLongitude}}" draggable="true" title="Go" click-events="true" mouse-events="true"></google-map-marker>
     <tan-arrets-service latitude="{{markerLatitude}}" longitude="{{markerLongitude}}" arrets="{{arrets}}"></tan-arrets-service>
-    <tan-temps-attente-service code-lieu="{{codeLieu}}" loading="{{loading}}" prochains="{{prochainsPassages}}"></tan-temps-attente-service>
-    <template is="dom-if" if="{{!loading}}">
-      <ul id="result">
-      <template is="dom-repeat" items="{{prochainsPassages}}">
-        <li><tan-image-ligne ligne="{{item.ligne.numLigne}}"></tan-image-ligne><span class="terminus">{{item.terminus}}</span><span class="temps">{{item.temps}}</span></li>
-      </template>
-      </ul>
-    </template>
-    <template is="dom-if" if="{{loading}}">
-      <div id="loading">Chargement</div>
-    </template>
+    <tan-temps-attente code-lieu="{{codeLieu}}"></tan-temps-attente>
 
   </template>
 </dom-module>

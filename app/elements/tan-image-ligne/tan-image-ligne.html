@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    <img id="image" width="60" height="60" src="images/1.gif" alt="{{ligne}}"/>
+    <img id="image" width="60" height="60" src="" alt="{{ligne}}"/>
   </template>
 </dom-module>
 <script>
@@ -29,7 +29,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
       ligne: {
         type: String,
-        value: '1'
+        notify: true,
+        value: '1',
+        reflectToAttribute: true,
+        observer: 'ligneChanged'
       },
       reference: {
         type: Object,
@@ -74,11 +77,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
     ready: function() {
-      if(!this.reference[this.ligne]) {
-        this.ligne = 1;
+      this.ligneChanged(this.ligne);
+    },
+    ligneChanged: function(ligne) {
+      if(this.reference) {
+        if(!this.reference[ligne]) {
+          ligne = 1;
+        }
+        this.ligne = ligne;
+        this.$.image.src = "data:image/jpeg;base64," + this.reference[this.ligne];
       }
-      this.$.image.src = "data:image/jpeg;base64," + this.reference[this.ligne];
+
     }
+
   });
 })();
 </script>
