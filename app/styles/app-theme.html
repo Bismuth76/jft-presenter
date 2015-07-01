@@ -35,83 +35,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     /* Components */
 
-    /* paper-drawer-panel */
-    --drawer-menu-color: transparent;
-    --drawer-border-color: 1px solid #ccc;
-    --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
 
-    /* paper-menu */
-    --paper-menu-background-color: transparent;
-    --menu-link-color: #111111;
   }
 
   /* General styles */
 
-  #drawerToolbar {
-    color: var(--secondary-text-color);
-    background-color: var(--drawer-menu-color);
-    border-bottom: var(--drawer-toolbar-border-color);
-    height: 64px;
+  body {
+    background: radial-gradient(#afc9da, var(--primary-background-color));
   }
 
   paper-material {
     border-radius: 2px;
     height: 100%;
-    padding: 16px 0 16px 0;
+    padding: 0;
     width: calc(98.66% - 16px);
-    margin: 16px auto;
+    margin: 0 auto;
     background: white;
   }
 
-  paper-menu iron-icon {
-    margin-right: 33px;
-    opacity: 0.54;
-  }
-
-  .paper-menu > .iron-selected {
-    color: var(--default-primary-color);
-  }
-
-  paper-menu a {
-    text-decoration: none;
-    color: var(--menu-link-color);
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -ms-flex-direction: row;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    font-family: 'Roboto', 'Noto', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    min-height: 48px;
-    padding: 0 16px;
-  }
-
-  #mainToolbar .middle {
-    margin-left: 48px;
-  }
-
-  #mainToolbar.has-shadow .middle {
-    font-size: 20px;
-    padding-bottom: 0;
-    margin-left: 48px;
-  }
-
-  /* Height of the scroll area */
-  .content {
-    height: 900px;
-  }
-
-  paper-drawer-panel {
-    background: radial-gradient(#afc9da, var(--primary-background-color));
-  }
 
   .navigation-buttons {
 
@@ -131,6 +72,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     opacity: 1;
   }
 
+  #slide-container {
+    color: var(--text-primary-color);
+    text-align: center;
+  }
+
+  #slide-container *.highlight {
+    color: var(--accent-color);
+  }
+
+  #petit-prince {
+
+  }
+
+  h1 {
+    font-size: 76px;
+    line-height: 135px;
+    margin-top: 54px;
+    margin-bottom: 27px;
+  }
+  h2 {
+    font-size: 55px;
+    line-height: 81px;
+    margin-top: 54px;
+    margin-bottom: 27px;
+  }
+  h3 {
+    font-size: 34px;
+    line-height: 54px;
+    margin-top: 27px;
+    margin-bottom: 27px;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 27px;
+    margin-top: 27px;
+    margin-bottom: 27px;
+  }
+  p, ul, ol, pre, table, blockquote {
+    margin-top: 27px;
+    margin-bottom: 27px;
+  }
+
+  /* Sanitation */
+  hr {
+    border: 1px solid;
+    margin: -1px 0;
+  }
+  ul ul, ol ol, ul ol, ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  b, strong, em, small, code {
+    line-height: 1;
+  }
+  sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+  }
+  sub {
+    top: 0.4em;
+  }
+
   /* Breakpoints */
 
   /* Small */
@@ -139,8 +143,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     paper-material {
       --menu-container-display: none;
       width: calc(97.33% - 32px);
-      padding-left: 16px;
-      padding-right: 16px;
     }
 
     .paper-font-display1 {
@@ -170,9 +172,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     paper-material {
       width: calc(98% - 46px);
-      margin-bottom: 32px;
-      padding-left: 30px;
-      padding-right: 30px;
     }
 
     #drawer.paper-drawer-panel > [drawer] {

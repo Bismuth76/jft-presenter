@@ -59,81 +59,95 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" hidden$="{{!isPresentationMode}}">
-      <div drawer>
 
-        <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="paper-font-title">Menu</span>
-        </paper-toolbar>
+    <iron-pages selected="{{route}}" id="slide-container" class="flex layout vertical">
 
-        <!-- Drawer Content -->
-          <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-              <a data-route="0" href="#!/0">
-                <iron-icon icon="home"></iron-icon>
-                <span>0</span>
-              </a>
+      <section class="flex layout vertical center-center">
+        <h1>Webcomponents</h1>
+        <img src="images/webcomponent.svg" alt="Logo webcomponents.org" width="400">
+      </section>
 
-              <a data-route="1" href="#!/1">
-                <iron-icon icon="info"></iron-icon>
-                <span>1</span>
-              </a>
+      <section class="flex layout vertical center-center">
+        <h1>Dessine-moi un composant</h1>
+        <img id="petit-prince" src="images/petit_prince.png" width="180px" alt="Le Petit Prince">
+      </section>
 
-              <a data-route="2" href="#!/2">
-                <iron-icon icon="mail"></iron-icon>
-                <span>2</span>
-              </a>
-          </paper-menu>
-      </div>
-      <paper-header-panel main mode="waterfall-tall">
-        <!-- Main Content -->
-        <div class="content">
-          <iron-pages selected="{{route}}" id="slide-container">
-
-            <section>
-              <paper-material elevation="1">
-                <span>Service page</span>
-                <h1>Tan arrêt tests</h1>
-
-                <tan-app></tan-app>
-
-              </paper-material>
-            </section>
-
-            <section>
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Users</h2>
-                <p>This is the users section</p>
-                <a href="/users/Rob">Rob</a>
-              </paper-material>
-            </section>
-
-            <section>
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">
-                User:<span>{{params.name}}</span>
-                </h2>
-                <div>This is <span>{{params.name}}</span>'s section</div>
-              </paper-material>
-            </section>
-
-            <section>
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Contact</h2>
-                <p>This is the contact section</p>
-              </paper-material>
-            </section>
-
-          </iron-pages>
+      <section class="flex layout vertical center-center">
+        <h1>Je peux te proposer</h1>
+        <div class="flex"></div>
+      </section>
+      <section class="flex layout vertical center-center">
+        <h1>Je peux te proposer</h1>
+        <div class="flex">
+          <button>Bouton</button>
+          <ul>
+            <li>Une</li>
+            <li>Liste</li>
+            <li>...</li>
+          </ul>
+          <select name="select">
+            <option value="">Un composant de sélection</option>
+            <option value="">Selection</option>
+            <option value="">...</option>
+          </select>
+          <input type="text"/>
+          <input type="file"/>
+          <table>
+            <tr>
+              <td>Un</td>
+              <td>Tableau</td>
+            </tr>
+            <tr>
+              <td>Pour</td>
+              <td>Ranger</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
         </div>
-      </paper-header-panel>
-    </paper-drawer-panel>
+      </section>
 
-    <div $hidden="{{isPresentationMode}}">CONSOLE</div>
+      <section class="flex layout vertical center-center">
+        <h2>Voilà une boite ! Ton composant est dedans...</h2>
+        <img src="images/box.png" width="180px" alt="Boite">
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <paper-material elevation="1">
+          <tan-app></tan-app>
+        </paper-material>
+      </section>
+
+      <section>
+        <paper-material elevation="1">
+          <h2 class="paper-font-display2">Users</h2>
+          <p>This is the users section</p>
+          <a href="/users/Rob">Rob</a>
+        </paper-material>
+      </section>
+
+      <section>
+        <paper-material elevation="1">
+          <h2 class="paper-font-display2">
+          User:<span>{{params.name}}</span>
+          </h2>
+          <div>This is <span>{{params.name}}</span>'s section</div>
+        </paper-material>
+      </section>
+
+      <section>
+        <paper-material elevation="1">
+          <h2 class="paper-font-display2">Contact</h2>
+          <p>This is the contact section</p>
+        </paper-material>
+      </section>
+
+    </iron-pages>
 
     <nav class="navigation-buttons">
       <paper-fab icon="arrow-back" on-click="previousSlide" id="previous-button"></paper-fab>
-      <paper-fab icon="menu" on-click="toggleDrawer" id="menu-button"></paper-fab>
       <paper-fab icon="arrow-forward" on-click="nextSlide" id="next-button"></paper-fab>
     </nav>
 
