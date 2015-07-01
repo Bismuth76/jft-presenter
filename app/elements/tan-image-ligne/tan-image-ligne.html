@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ligne: {
         type: String,
         notify: true,
-        value: '1',
+        value: '',
         reflectToAttribute: true,
         observer: 'ligneChanged'
       },
@@ -82,7 +82,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     ligneChanged: function(ligne) {
       if(this.reference) {
         if(!this.reference[ligne]) {
-          ligne = 1;
+          this.$.image.src = "data:image/jpeg;base64," + this.reference["1"];
+          return;
         }
         this.ligne = ligne;
         this.$.image.src = "data:image/jpeg;base64," + this.reference[this.ligne];

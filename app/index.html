@@ -63,35 +63,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <iron-pages selected="{{route}}" id="slide-container" class="flex layout vertical">
 
       <section class="flex layout vertical center-center">
-        <h1>Webcomponents</h1>
-        <img src="images/webcomponent.svg" alt="Logo webcomponents.org" width="400">
-      </section>
-
-      <section class="flex layout vertical center-center">
         <h1>Dessine-moi un composant</h1>
         <img id="petit-prince" src="images/petit_prince.png" width="180px" alt="Le Petit Prince">
       </section>
 
       <section class="flex layout vertical center-center">
-        <h1>Je peux te proposer</h1>
-        <div class="flex"></div>
-      </section>
-      <section class="flex layout vertical center-center">
-        <h1>Je peux te proposer</h1>
-        <div class="flex">
-          <button>Bouton</button>
-          <ul>
-            <li>Une</li>
-            <li>Liste</li>
-            <li>...</li>
-          </ul>
-          <select name="select">
-            <option value="">Un composant de sélection</option>
-            <option value="">Selection</option>
-            <option value="">...</option>
-          </select>
-          <input type="text"/>
-          <input type="file"/>
+        <div class="bigger">
+          <div>
+            <button>Des</button>
+            <button>Boutons</button>
+            <button>A</button>
+            <button>Customiser</button>
+          </div>
+          <div>
+            <ol>
+              <li>Des</li>
+              <li>Listes</li>
+              <li>Ordonnées</li>
+            </ol>
+            <ul>
+              <li>Et</li>
+              <li>D'autres</li>
+              <li>Sans</li>
+              <li>Ordres</li>
+            </ul>
+          </div>
+
+          <div>
+            <select name="select">
+              <option value="">Un composant de sélection</option>
+              <option value="">...</option>
+            </select>
+            <select name="select">
+              <option value="">très difficilement customisable</option>
+              <option value="">...</option>
+            </select>
+          </div>
+          <div>
+            <input type="text" value="Des champs de saisie"/>
+            <input type="text" value="Avec des contrôles pas toujours bien implémentés"/>
+          </div>
           <table>
             <tr>
               <td>Un</td>
@@ -99,19 +110,164 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </tr>
             <tr>
               <td>Pour</td>
-              <td>Ranger</td>
+              <td>Afficher</td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
+              <td>Des</td>
+              <td>Données</td>
+            </tr>
+            <tr>
+              <td>Et même, à une époque</td>
+              <td>Structurer les pages avec style</td>
             </tr>
           </table>
         </div>
       </section>
 
       <section class="flex layout vertical center-center">
-        <h2>Voilà une boite ! Ton composant est dedans...</h2>
-        <img src="images/box.png" width="180px" alt="Boite">
+        <h1>Voilà une boite !</h1>
+        <h2>Ton composant est dedans...</h2>
+        <img id="box" src="images/box.png" width="500px" alt="Boite">
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <h1>Webcomponents</h1>
+        <img src="images/webcomponent.svg" alt="Logo webcomponents.org" width="400">
+      </section>
+
+      <section class="flex layout vertical center-center bigger">
+        <paper-input label="Ma ligne" value="{{maLigne}}"></paper-input>
+        <tan-image-ligne ligne="{{maLigne}}"></tan-image-ligne>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <ul>
+          <li><img src="" alt=""><h1>CUSTOM ELEMENTS</h1></li>
+          <li><img src="" alt=""><h1>HTML IMPORT</h1></li>
+          <li><img src="" alt=""><h1>TEMPLATES</h1></li>
+          <li><img src="" alt=""><h1>SHADOW DOM</h1></li>
+        </ul>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <h1>CUSTOM ELEMENTS</h1>
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <mon-composant></mon-composant>
+
+            <tan-image-ligne></tan-image-ligne>
+            ```
+          </script>
+        </marked-element>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <h1>HTML IMPORT</h1>
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <link rel="import" href="tan-image-ligne/tan-image-ligne.html">
+            ```
+          </script>
+        </marked-element>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <h1>TEMPLATES</h1>
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <template id="mon-template">
+                <img src="" alt="">
+            </template>
+            ```
+          </script>
+        </marked-element>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <h1>SHADOW DOM</h1>
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <tan-image-ligne></tan-image-ligne>
+            ```
+          </script>
+        </marked-element>
+      </section>
+
+      <section class="flex layout vertical center-center bigger">
+        <paper-input label="Ma ligne" value="{{maLigne}}"></paper-input>
+        <tan-image-ligne ligne="{{maLigne}}"></tan-image-ligne>
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <paper-input label="Ma ligne" value="{{maLigne}}"></paper-input>
+
+            <tan-image-ligne ligne="{{maLigne}}"></tan-image-ligne>
+            ```
+          </script>
+        </marked-element>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <h1>Des composants "clef en main"</h1>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <tan-image-ligne ligne="4"></tan-image-ligne>
+            ```
+          </script>
+        </marked-element>
+
+        <tan-image-ligne ligne="4"></tan-image-ligne>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <google-map
+                latitude="47.2172522"
+                longitude="-1.5533600">
+            </google-map>
+            ```
+          </script>
+        </marked-element>
+
+        <google-map latitude="47.2172522" longitude="-1.5533600" zoom="10" style="height:300px; width:500px;"></google-map>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <tan-arrets-service
+                latitude="47.2172522"
+                longitude="-1.5533600"
+                arrets="{{arrets}}">
+            </tan-arrets-service>
+            ```
+          </script>
+        </marked-element>
+      </section>
+
+      <section class="flex layout vertical center-center">
+        <marked-element>
+          <script type="text/markdown">
+            ```html
+            <google-map></google-map>
+
+            <tan-arrets-service></tan-arrets-service>
+
+            <tan-temps-attente></tan-temps-attente>
+            ```
+          </script>
+        </marked-element>
       </section>
 
       <section class="flex layout vertical center-center">

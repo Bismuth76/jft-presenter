@@ -12,12 +12,23 @@
       app.route--;
       window.location.href = "#!/" + app.mode + '/' + app.route;
     }
+    forceMapResize();
   }
 
   app.nextSlide = function() {
     if(app.route < app.slidesNumber -1) {
       app.route++;
       window.location.href = "#!/" + app.mode + '/' + app.route;
+    }
+    forceMapResize();
+  }
+
+  function forceMapResize() {
+    if(app.route > 10){
+      var maps = document.querySelectorAll('google-map');
+      for(var i=0; i<maps.length;i++) {
+        maps[i].resize();
+      }
     }
   }
 
