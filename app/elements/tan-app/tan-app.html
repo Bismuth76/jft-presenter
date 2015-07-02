@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <google-map id="map" latitude="{{latitude}}" longitude="{{longitude}}" style="height: 500px;" mouse-events="true" click-events="true" drag-events="true" zoom="15">
 
       <template id="arretsmarkers" is="dom-repeat" items="{{arrets}}">
-        <google-map-marker latitude="{{item.latitude}}" longitude="{{item.longitude}}" title="{{item.libelle}}" code-lieu="{{item.codeLieu}}" click-events="true" on-google-map-marker-click="onMarkerClicked">
+        <google-map-marker icon="images/tan-marker-small.png" latitude="{{item.latitude}}" longitude="{{item.longitude}}" title="{{item.libelle}}" code-lieu="{{item.codeLieu}}" click-events="true" on-google-map-marker-click="onMarkerClicked">
         </google-map-marker>
       </template>
     </google-map>
